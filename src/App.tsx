@@ -129,7 +129,8 @@ function MainAppContent() {
     }
 
     if (currentPath.startsWith('/reviews/')) {
-      return <ProductReviewPage slug={currentPath} onNavigate={handleNavigate} />;
+      const slug = currentPath.split('?')[0];
+      return <ProductReviewPage slug={slug} onNavigate={handleNavigate} />;
     }
 
     if (currentPath.startsWith('/buying-guides')) {

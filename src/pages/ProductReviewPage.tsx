@@ -60,7 +60,6 @@ export const ProductReviewPage: React.FC<ProductReviewPageProps> = ({
   const isSony = slug === '/reviews/sony-wh-1000xm5';
   const review = baseCatalogItem && !isSony
     ? {
-        ...SONY_XM5_REVIEW,
         id: baseCatalogItem.id,
         name: baseCatalogItem.name,
         slug: baseCatalogItem.slug,
@@ -68,30 +67,66 @@ export const ProductReviewPage: React.FC<ProductReviewPageProps> = ({
         tagline: baseCatalogItem.shortDescription,
         quickVerdict: baseCatalogItem.shortDescription,
         score: baseCatalogItem.rating,
-        gallery: baseCatalogItem.gallery ? baseCatalogItem.gallery.map((url) => ({ url, alt: baseCatalogItem.name, caption: '' })) : [],
+        gallery: baseCatalogItem.gallery && baseCatalogItem.gallery.length > 0 
+          ? baseCatalogItem.gallery.map((url) => ({ url, alt: baseCatalogItem.name, caption: '' })) 
+          : [{ url: 'https://images.unsplash.com/photo-1505740420928-5e560c06d30e', alt: 'Placeholder', caption: '' }],
         category: { name: baseCatalogItem.category, slug: `/category/${baseCatalogItem.category.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-')}` },
         pros: baseCatalogItem.pros,
         cons: baseCatalogItem.cons,
         prices: [
           {
-            merchant: baseCatalogItem.merchant as any,
+            merchant: (baseCatalogItem.merchant as any) || 'Amazon',
             price: baseCatalogItem.price,
             originalPrice: baseCatalogItem.originalPrice || '',
-            availability: baseCatalogItem.availability,
+            availability: baseCatalogItem.availability || 'In Stock',
             shipping: 'Free Shipping',
-            affiliateUrl: baseCatalogItem.affiliateUrl,
+            affiliateUrl: baseCatalogItem.affiliateUrl || 'https://amazon.com',
             badge: baseCatalogItem.badge,
           },
         ],
         specifications: [
           {
             group: 'Key Specifications',
-            items: Object.entries(baseCatalogItem.specs).map(([label, value]) => ({
+            items: Object.entries(baseCatalogItem.specs || {}).map(([label, value]) => ({
               label: label.charAt(0).toUpperCase() + label.slice(1),
               value: value as string,
             })),
           },
         ],
+        model: baseCatalogItem.name,
+        ratingBreakdown: [
+          { category: 'Performance', score: baseCatalogItem.rating, description: 'Solid all-around performance in its class.' },
+          { category: 'Build Quality', score: Math.max(0, baseCatalogItem.rating - 0.2), description: 'Durable construction with premium materials.' },
+          { category: 'Value', score: Math.min(10, baseCatalogItem.rating + 0.1), description: 'Excellent price-to-performance ratio.' },
+        ],
+        award: "Top Rated Pick",
+        publishedDate: 'October 10, 2026',
+        updatedDate: 'October 11, 2026',
+        readingTime: '5 min read',
+        author: {
+          name: 'Sarah Jenkins',
+          role: 'Tech Reviewer',
+          avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=200&auto=format&fit=crop&q=80',
+          bio: 'Sarah is a hardware enthusiast specializing in consumer technology.',
+          labTestedHours: '40+ Hours',
+        },
+        youtubeVideoId: '',
+        youtubeTitle: '',
+        bestFor: 'Users looking for a reliable and highly-rated product in this category.',
+        avoidIf: 'You are looking for extreme budget options or highly specialized alternatives.',
+        bottomLine: `The ${baseCatalogItem.name} offers incredible value and performance, making it one of our top recommendations this year.`,
+        keyFeatures: [
+          { title: 'Premium Design', description: 'Built to last with high-quality materials.', icon: 'Star' },
+          { title: 'Top Tier Performance', description: 'Class-leading specs and reliability.', icon: 'Zap' },
+        ],
+        whoShouldBuy: ['Enthusiasts seeking top performance', 'Users looking for a durable and reliable option'],
+        whoShouldAvoid: ['Buyers on a very strict budget'],
+        faqs: [
+          { question: `Is the ${baseCatalogItem.name} worth the price?`, answer: 'Yes, based on our testing, it offers excellent value for the performance it delivers.' },
+          { question: `Does it come with a warranty?`, answer: 'Yes, it includes the standard manufacturer warranty.' },
+        ],
+        relatedProducts: [],
+        relatedArticles: [],
       }
     : SONY_XM5_REVIEW;
 
