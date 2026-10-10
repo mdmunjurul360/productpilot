@@ -1,0 +1,129 @@
+@import "tailwindcss";
+@config "../tailwind.config.ts";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@layer base {
+  :root {
+    --color-charcoal-primary: #0b0f19;
+    --color-charcoal-secondary: #374151;
+    --color-slate-canvas: #f8fafc;
+    --color-slate-card: #ffffff;
+    --color-slate-border: #e2e8f0;
+    --color-affiliate-primary: #10b981;
+    --color-affiliate-hover: #059669;
+    --color-affiliate-amazon: #ff9900;
+    --color-affiliate-ebay: #0064d2;
+    --color-affiliate-aliexpress: #ff4747;
+    --color-affiliate-daraz: #f85606;
+  }
+
+  body {
+    background-color: #f8fafc;
+    color: #0b0f19;
+    font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom Sleek Scrollbar */
+  ::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+  }
+
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+
+  ::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 9999px;
+  }
+
+  ::-webkit-scrollbar-thumb:hover {
+    background: #94a3b8;
+  }
+
+  .dark ::-webkit-scrollbar-thumb {
+    background: #1e293b;
+  }
+
+  .dark ::-webkit-scrollbar-thumb:hover {
+    background: #334155;
+  }
+
+  /* Focus ring accessibility */
+  :focus-visible {
+    outline: 2px solid #2563eb;
+    outline-offset: 2px;
+  }
+
+  .dark body {
+    background-color: #090d16;
+    color: #f1f5f9;
+  }
+}
+
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+
+.animate-shimmer {
+  background: linear-gradient(90deg, rgba(255,255,255,0) 0%, rgba(255,255,255,0.08) 50%, rgba(255,255,255,0) 100%);
+  background-size: 200% 100%;
+  animation: shimmer 1.8s infinite;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+@theme {
+  --color-charcoal-50: #f9fafb;
+  --color-charcoal-100: #f3f4f6;
+  --color-charcoal-200: #e5e7eb;
+  --color-charcoal-300: #d1d5db;
+  --color-charcoal-400: #9ca3af;
+  --color-charcoal-500: #6b7280;
+  --color-charcoal-600: #4b5563;
+  --color-charcoal-700: #374151;
+  --color-charcoal-800: #1f2937;
+  --color-charcoal-900: #111827;
+  --color-charcoal-950: #0b0f19;
+
+  --color-slate-surface-50: #f8fafc;
+  --color-slate-surface-100: #f1f5f9;
+  --color-slate-surface-200: #e2e8f0;
+  --color-slate-surface-300: #cbd5e1;
+  --color-slate-surface-400: #94a3b8;
+  --color-slate-surface-500: #64748b;
+  --color-slate-surface-600: #475569;
+  --color-slate-surface-700: #334155;
+  --color-slate-surface-800: #1e293b;
+  --color-slate-surface-900: #0f172a;
+  --color-slate-surface-950: #020617;
+
+  --color-affiliate-primary: #10b981;
+  --color-affiliate-hover: #059669;
+  --color-affiliate-amazon: #ff9900;
+  --color-affiliate-ebay: #0064d2;
+  --color-affiliate-aliexpress: #ff4747;
+  --color-affiliate-daraz: #f85606;
+
+  --font-sans: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
+  --font-editorial: 'Playfair Display', Georgia, serif;
+}

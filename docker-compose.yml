@@ -1,0 +1,41 @@
+version: '3.8'
+
+services:
+  productpilot:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: productpilot:latest
+    container_name: productpilot-app
+    restart: unless-stopped
+    ports:
+      - "${PORT:-3000}:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - BASE_URL=${BASE_URL:-https://productpilot.com}
+      - ADMIN_EMAIL=${ADMIN_EMAIL:-admin@productpilot.com}
+      - ADMIN_SESSION_SECRET=${ADMIN_SESSION_SECRET:-changeme-production-secret-must-be-32-chars-long}
+      - AMAZON_AFFILIATE_TAG=${AMAZON_AFFILIATE_TAG:-pilot-20}
+      - EBAY_CAMPAIGN_ID=${EBAY_CAMPAIGN_ID:-533890123}
+      - ALIEXPRESS_SUB_ID=${ALIEXPRESS_SUB_ID:-pilot-ali}
+      - DARAZ_AFFILIATE_ID=${DARAZ_AFFILIATE_ID:-pilot-daraz-global}
+      - GA4_MEASUREMENT_ID=${GA4_MEASUREMENT_ID:-G-PILOT2026XX}
+      - GTM_CONTAINER_ID=${GTM_CONTAINER_ID:-GTM-PILOT98}
+    volumes:
+      - productpilot_data:/app/data
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/ping"]
+      interval: 30s
+      timeout: 5s
+      retries: 3
+      start_period: 10s
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "20m"
+        max-file: "5"
+
+volumes:
+  productpilot_data:
+    driver: local

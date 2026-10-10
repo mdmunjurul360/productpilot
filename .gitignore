@@ -1,0 +1,33 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Production & Build outputs
+build/
+dist/
+dist-ssr/
+*.local
+
+# Editor directories and files
+.vscode/*
+!.vscode/extensions.json
+.idea
+.DS_Store
+*.suo
+*.ntvs*
+*.class
+*.log
+
+# Environment variables
+.env*
+!.env.example
+
+# Local Databases / Persistent Files
+# In a VPS deployment we persist data/productpilot_db.json
+# For local dev we might want to ignore it if we seed it, but for now we leave it tracked or untracked based on strategy.
+# We will track the DB so the production instance starts with something, or ignore it if we want empty states.
+# We'll ignore backup files.
+data/backups/
+data/*.json
