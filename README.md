@@ -29,13 +29,15 @@ ProductPilot is an enterprise-grade web application built to compete with top ed
 
 *(Replace these with actual screenshots of your application)*
 
+## Screenshots
+
 | Homepage | Review Article |
 |----------|----------------|
-| ![Homepage Placeholder](https://via.placeholder.com/400x250.png?text=Homepage+Screenshot) | ![Review Article Placeholder](https://via.placeholder.com/400x250.png?text=Review+Article+Screenshot) |
+| ![Homepage](screenshots/homepage.png) | ![Review Article](screenshots/review_article.png) |
 
 | Smart Search | Admin Dashboard |
 |--------------|-----------------|
-| ![Smart Search Placeholder](https://via.placeholder.com/400x250.png?text=Smart+Search+Screenshot) | ![Admin Dashboard Placeholder](https://via.placeholder.com/400x250.png?text=Admin+Dashboard+Screenshot) |
+| ![Smart Search](screenshots/smart_search.png) | ![Admin Dashboard](screenshots/admin_dashbord.png) |
 
 ## 5. Installation
 
