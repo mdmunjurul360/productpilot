@@ -7,7 +7,11 @@
 
 ## 1. Project Overview
 
-ProductPilot is an enterprise-grade web application built to compete with top editorial publications such as *Wirecutter* and *RTINGS*. It combines laboratory testing benchmarks with automated affiliate monetization across **Amazon Associates**, **eBay Partner Network (EPN)**, **AliExpress Affiliate**, and **Daraz Marketplace**.
+ProductPilot is a full-stack affiliate product review platform built as a portfolio project.
+
+It focuses on structured product reviews, SEO-friendly content, category browsing, and an admin dashboard for managing products and content.
+
+The project demonstrates modern frontend development, backend integration, authentication, and scalable project organization while continuing to evolve.
 
 ## 2. Features
 
@@ -88,7 +92,13 @@ Copy `.env.example` to `.env` to configure your target tier:
 
 ## 7. AI Transparency Notice
 
-*Note: AI tools and LLMs were used during the early prototyping and scaffolding phases of this project to accelerate boilerplate generation. All subsequent integration, debugging, security auditing, customization, testing, and ongoing maintenance were performed manually by the author to ensure professional grade quality and security.*
+Development Notes
+
+This project began with AI-assisted prototyping for parts of the initial interface.
+
+The application architecture, backend integration, feature implementation, debugging, customization, testing, and ongoing maintenance were completed through iterative development by me using modern development tools where appropriate.
+
+All implementation decisions and final code review are my responsibility.
 
 ## 8. License
 
