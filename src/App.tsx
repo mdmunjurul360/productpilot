@@ -66,12 +66,25 @@ function MainAppContent() {
   const [isPriceModalOpen, setIsPriceModalOpen] = useState(false);
   const [showMobileStickyAd, setShowMobileStickyAd] = useState(true);
   const [isDataLoaded, setIsDataLoaded] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
 
   useEffect(() => {
     syncFrontendWithBackend().finally(() => {
       setIsDataLoaded(true);
     });
   }, []);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
 
   const {
     favorites,
@@ -172,7 +185,7 @@ function MainAppContent() {
                 onClick={() => handleNavigate('/')}
                 className="text-xs text-blue-300 hover:text-white underline font-sans"
               >
-                Back to Homepage
+                Back to Home
               </button>
             </div>
           </div>
@@ -312,6 +325,19 @@ function MainAppContent() {
             </button>
           </div>
         </div>
+      )}
+
+      {/* Floating Scroll to Top Button */}
+      {showScrollTop && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-24 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg hover:bg-blue-700 transition-all animate-in fade-in duration-200 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 dark:focus:ring-offset-slate-900"
+          aria-label="Scroll to top"
+        >
+          <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18" />
+          </svg>
+        </button>
       )}
 
       {/* Section 11: Production Footer */}

@@ -48,7 +48,7 @@ export const ErrorPage: React.FC<ErrorPageProps> = ({ onRetry, onNavigate }) => 
             className="inline-flex items-center gap-2 rounded-2xl border border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-5 py-3 text-xs font-bold text-slate-700 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-800 transition-colors"
           >
             <Home className="h-4 w-4" />
-            <span>Go to Homepage</span>
+            <span>Back to Home</span>
           </button>
         </div>
       </div>

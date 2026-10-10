@@ -38,7 +38,7 @@ export const NotFoundPage: React.FC<NotFoundPageProps> = ({ onNavigate }) => {
             className="inline-flex items-center gap-2 rounded-2xl bg-blue-600 hover:bg-blue-500 px-5 py-3 text-xs font-bold text-white shadow-lg shadow-blue-900/40 transition-colors"
           >
             <Home className="h-4 w-4" />
-            <span>Return to Homepage</span>
+            <span>Back to Home</span>
           </button>
           <button
             onClick={() => onNavigate('/categories')}

@@ -45,6 +45,7 @@ import { SocialShareBar } from '../components/product/SocialShareBar';
 import { StickyMobileBuyBar } from '../components/product/StickyMobileBuyBar';
 import { RelatedProductsSection } from '../components/product/RelatedProductsSection';
 import { RelatedArticlesSection } from '../components/product/RelatedArticlesSection';
+import { NotFoundPage } from './NotFoundPage';
 
 interface ProductReviewPageProps {
   slug?: string;
@@ -55,7 +56,45 @@ export const ProductReviewPage: React.FC<ProductReviewPageProps> = ({
   slug = '/reviews/sony-wh-1000xm5',
   onNavigate,
 }) => {
-  const review = SONY_XM5_REVIEW;
+  const baseCatalogItem = UNIFIED_CATALOG.find((p) => p.slug === slug);
+  const isSony = slug === '/reviews/sony-wh-1000xm5';
+  const review = baseCatalogItem && !isSony
+    ? {
+        ...SONY_XM5_REVIEW,
+        id: baseCatalogItem.id,
+        name: baseCatalogItem.name,
+        slug: baseCatalogItem.slug,
+        brand: baseCatalogItem.brand,
+        tagline: baseCatalogItem.shortDescription,
+        quickVerdict: baseCatalogItem.shortDescription,
+        score: baseCatalogItem.rating,
+        gallery: baseCatalogItem.gallery ? baseCatalogItem.gallery.map((url) => ({ url, alt: baseCatalogItem.name, caption: '' })) : [],
+        category: { name: baseCatalogItem.category, slug: `/category/${baseCatalogItem.category.toLowerCase().replace(/ & /g, '-').replace(/\s+/g, '-')}` },
+        pros: baseCatalogItem.pros,
+        cons: baseCatalogItem.cons,
+        prices: [
+          {
+            merchant: baseCatalogItem.merchant as any,
+            price: baseCatalogItem.price,
+            originalPrice: baseCatalogItem.originalPrice || '',
+            availability: baseCatalogItem.availability,
+            shipping: 'Free Shipping',
+            affiliateUrl: baseCatalogItem.affiliateUrl,
+            badge: baseCatalogItem.badge,
+          },
+        ],
+        specifications: [
+          {
+            group: 'Key Specifications',
+            items: Object.entries(baseCatalogItem.specs).map(([label, value]) => ({
+              label: label.charAt(0).toUpperCase() + label.slice(1),
+              value: value as string,
+            })),
+          },
+        ],
+      }
+    : SONY_XM5_REVIEW;
+
   const { addRecentlyViewed, addToCompare, isInCompare, toggleFavorite, isFavorite } = useDiscovery();
   const [readingProgress, setReadingProgress] = useState(0);
 
@@ -113,6 +152,10 @@ export const ProductReviewPage: React.FC<ProductReviewPageProps> = ({
       buyBoxElement.scrollIntoView({ behavior: 'smooth', block: 'center' });
     }
   };
+
+  if (!baseCatalogItem && !isSony) {
+    return <NotFoundPage onNavigate={onNavigate} />;
+  }
 
   const handleAddComment = (e: React.FormEvent) => {
     e.preventDefault();

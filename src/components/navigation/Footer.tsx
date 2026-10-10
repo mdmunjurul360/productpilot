@@ -266,7 +266,6 @@ export const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
                 { name: 'Terms & Conditions of Service', path: '/terms-and-conditions' },
                 { name: 'Cookie Consent Policy', path: '/cookie-policy' },
                 { name: 'Security Vulnerability Disclosure', path: '/security' },
-                { name: 'Admin Management Portal', path: '/admin' },
               ].map((item) => (
                 <li key={item.name}>
                   <a
