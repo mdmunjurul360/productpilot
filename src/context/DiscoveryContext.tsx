@@ -32,6 +32,7 @@ export interface CatalogProduct {
     warranty: string;
     material?: string;
     ancRating?: string;
+    [key: string]: any;
   };
   pros: string[];
   cons: string[];
